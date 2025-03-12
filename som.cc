@@ -125,7 +125,7 @@ struct Node {
 /*******************************************************************************
  * Som
  ******************************************************************************/
-#include <iostream>
+
 class Som {
  public:
   using NodesT = std::vector<Node*>;
@@ -375,9 +375,9 @@ std::vector<Vec> GenerateTrainingData() {
 }
 
 int main(void) {
+  SetUpRaylibWindow(kWindowWidth, kWindowHeight);
   HexGridDrawer hex_grid(kMapOrigin, kHexSize);
   SidebarDrawer sidebar(kSidebarPos, kSidebarSize);
-  SetUpRaylibWindow(kWindowWidth, kWindowHeight);
 
   auto som = Som(7, 11);
   auto training_data = GenerateTrainingData();
