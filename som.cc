@@ -216,6 +216,8 @@ constexpr int kWindowHeight = 1080;
 constexpr Vector2 kWindowMiddle = Vector2(kWindowWidth / 2, kWindowHeight / 2);
 constexpr Vector2 kSidebarPos = Vector2(0, 0);
 constexpr Vector2 kSidebarSize = Vector2(kWindowWidth / 5, kWindowHeight);
+constexpr float kSidebarRowHeight = 70.0;
+constexpr float kSidebarPadding = 20.0;
 constexpr Vector2 kHexSize = Vector2(70, 70);
 constexpr Vector2 kMapOrigin = Vector2(kWindowMiddle.x + kSidebarSize.x / 2,
                                        kWindowMiddle.y - kHexSize.y / 2);
@@ -294,19 +296,17 @@ class HexGridDrawer {
 
 class SidebarDrawer {
  private:
-  static constexpr float row_height_ = 70.0;
-  static constexpr float padding_ = 20.0;
   const Vector2 pos_;
   const Vector2 size_;
 
  public:
   SidebarDrawer(const Vector2& pos, const Vector2& size)
-      : pos_(Vector2AddValue(pos, padding_)),
-        size_(Vector2SubtractValue(size, 2 * padding_)) {}
+      : pos_(Vector2AddValue(pos, kSidebarPadding)),
+        size_(Vector2SubtractValue(size, 2 * kSidebarPadding)) {}
 
   void Draw(unsigned& epoch, Node* selected_node) {
-    DrawRectangleV(Vector2SubtractValue(pos_, padding_),
-                   Vector2AddValue(size_, 2 * padding_), LIGHTGRAY);
+    DrawRectangleV(Vector2SubtractValue(pos_, kSidebarPadding),
+                   Vector2AddValue(size_, 2 * kSidebarPadding), LIGHTGRAY);
 
     int row = 0;
     DrawLabel(row++, "Epoch " + std::to_string(epoch));
@@ -327,16 +327,17 @@ class SidebarDrawer {
 
  private:
   void DrawLabel(int row, std::string&& text) {
-    Rectangle pos = {pos_.x, pos_.y + row * row_height_, size_.x, row_height_};
+    Rectangle pos = {pos_.x, pos_.y + row * kSidebarRowHeight, size_.x,
+                     kSidebarRowHeight};
     GuiLabel(pos, text.c_str());
   }
 
   void DrawEpochButtons(int row, unsigned& value) {
     float width = size_.x / 2;
-    Rectangle prev_pos = {pos_.x, pos_.y + row * row_height_, width,
-                          row_height_};
-    Rectangle next_pos = {pos_.x + width, pos_.y + row * row_height_, width,
-                          row_height_};
+    Rectangle prev_pos = {pos_.x, pos_.y + row * kSidebarRowHeight, width,
+                          kSidebarRowHeight};
+    Rectangle next_pos = {pos_.x + width, pos_.y + row * kSidebarRowHeight,
+                          width, kSidebarRowHeight};
     if (GuiButton(prev_pos, "-1")) {
       if (value > 0) {
         value -= 1;
