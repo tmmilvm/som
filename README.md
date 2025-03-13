@@ -17,3 +17,13 @@ Run the built executable as you would expect:
 ```bash
 $ ./som
 ```
+
+## Example screenshots
+
+Here is an example of the generated SOM in it's initial randomized state and after 1, 5 and 20 training epochs.
+
+![Epoch 0](screenshots/som-epoch0.png)
+![Epoch 1](screenshots/som-epoch1.png)
+![Epoch 5](screenshots/som-epoch5.png)
+![Epoch 20](screenshots/som-epoch20.png)
+

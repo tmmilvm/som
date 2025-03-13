@@ -129,7 +129,7 @@ struct Node {
 class Som {
  public:
   using NodesT = std::vector<Node*>;
-  static constexpr unsigned kTrainingEpochLimit = 10;
+  static constexpr unsigned kTrainingEpochLimit = 20;
 
  private:
   NodesT nodes_;
@@ -364,7 +364,7 @@ void SetUpRaylibWindow(int window_width, int window_height) {
 
 std::vector<Vec> GenerateTrainingData() {
   std::vector<Vec> data;
-  for (double i = 0; i < 2; ++i) {
+  for (double i = 0; i < 1; ++i) {
     data.push_back({255.0, 0.0, 0.0});
     data.push_back({255.0, 127.0, 0.0});
     data.push_back({255.0, 255.0, 0.0});
