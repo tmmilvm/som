@@ -311,6 +311,7 @@ class SidebarDrawer {
     int row = 0;
     DrawLabel(row++, "Epoch " + std::to_string(epoch));
     DrawEpochButtons(row++, epoch);
+
     if (selected_node != nullptr) {
       row++;
 
