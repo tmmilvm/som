@@ -2,6 +2,8 @@
 
 An application that illustrates how the self-organizing map (SOM) works through color data.
 
+The SOM is trained with ROYGBIV colors for 20 epochs when the application is started up and for each epoch a snapshot of the state of the neurons is saved. The neuron snapshots can be cycled through in the application to see how the map converges to form different areas that are each sensitive to some specific color.
+
 ## Building
 
 Requires `raylib` and `raygui`, tested with versions 5.5 and 4.0, respectively. After downloading and unpacking the releases to this directory, you can build the application like this:
